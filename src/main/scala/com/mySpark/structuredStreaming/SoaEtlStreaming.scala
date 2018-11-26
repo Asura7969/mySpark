@@ -21,8 +21,8 @@ object SoaEtlStreaming {
     val conf = new SparkConf().setAppName(SoaEtlStreaming.getClass.getSimpleName)
       .setMaster("local[*]")
       .set("spark.streaming.stopGracefullyOnShutdown", "true")
-    //      .set("spark.streaming.backpressure.initialRate", "4000")
-    //      .set("spark.streaming.kafka.maxRatePerPartition", "7000")
+//      .set("spark.streaming.backpressure.initialRate", "4000")
+//      .set("spark.streaming.kafka.maxRatePerPartition", "7000")
 
 
     val spark = SparkSession.builder()
