@@ -35,3 +35,4 @@ target/classes/log4j2.properties
 target/generated-sources/
 /src/test/
 /spark-warehouse/
+/mySpark.iml
