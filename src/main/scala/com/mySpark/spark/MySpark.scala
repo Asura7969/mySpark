@@ -2,8 +2,12 @@ package com.mySpark.spark
 
 import com.mySpark.spark.udaf.NumsAvg
 import org.apache.spark.SparkContext
+import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.types.{DoubleType, StructField, StructType}
 import org.apache.spark.sql.{DataFrame, Row, SparkSession}
+import org.apache.spark.streaming.{Seconds, StreamingContext}
+
+import scala.collection.mutable
 
 
 //https://zhuanlan.zhihu.com/p/50493420
@@ -17,15 +21,28 @@ object MySpark {
     val sc = spark.sparkContext
 
 
-
-//    LATERALVIEW(spark)
-
+//    test(spark,sc)
+//    LATERALVIEW(spark,sc)
 //    udfFunBySQL(spark,sc)
 //    udfFunByDataFrame(spark,sc)
-    udaf(spark,sc)
-//    jobs.printSchema()
+//    udaf(spark,sc)
 
     sc.stop()
+  }
+
+  def test(spark:SparkSession,sc:SparkContext): Unit ={
+    val list = List(
+      "{\"method\":\"create\",\"isBluetoothOpen\":\"true\",\"service\":\"com.hellobike.create\",\"logvalue\":\"5\",\"addCol\":\"1\"}",
+      "{\"method\":\"create\",\"isBluetoothOpen\":\"false\",\"service\":\"com.hellobike.create\",\"logvalue\":\"4\",\"appid\":\"appid1\",\"addCol\":\"2\"}",
+      "{\"method\":\"create\",\"code\":\"2\",\"service\":\"com.hellobike.create\",\"logvalue\":\"3\",\"appid\":\"appid2\",\"addCol\":\"2\"}",
+      "{\"method\":\"create\",\"service\":\"com.hellobike.aa\",\"logvalue\":\"3\",\"appid\":\"appid2\",\"addCol\":\"null\"}")
+    val rdd: RDD[String] = sc.parallelize(list)
+
+
+
+    val df = spark.read.json(rdd)
+
+    df.where("isBluetoothOpen = 'true'").show()
   }
 
   /**

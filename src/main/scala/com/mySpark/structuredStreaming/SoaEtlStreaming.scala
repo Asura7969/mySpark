@@ -12,6 +12,8 @@ import utils.LogScanner
 
 /**
   * spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.11:2.2.1 --class * --master yarn --deploy-mode client --driver-memory 2g --executor-memory 1g --executor-cores 3 --num-executors 5 ./AppDFMonitorPlatform.jar
+  *
+  * http://wiki.cheyaoshicorp.com/pages/viewpage.action?pageId=46864116
   * */
 object SoaEtlStreaming {
   def main(args: Array[String]): Unit = {

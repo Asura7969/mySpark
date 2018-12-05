@@ -36,3 +36,5 @@ target/generated-sources/
 /src/test/
 /spark-warehouse/
 /mySpark.iml
+/src/main/resources/META-INF/
+src/main/resources/META-INF/
